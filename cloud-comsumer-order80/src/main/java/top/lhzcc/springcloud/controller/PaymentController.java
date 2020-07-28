@@ -15,10 +15,10 @@ import javax.annotation.Resource;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("/api/payment")
+@RequestMapping("/consumer/payment")
 public class PaymentController {
 
-    private String PAYMAEN_URL = "http://localhost:8001//api/payment/";
+    private String PAYMAEN_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;
@@ -27,7 +27,7 @@ public class PaymentController {
     public CommonResult create(@RequestBody PayMent payMent) {
 
         ResponseEntity<CommonResult> entity
-                = restTemplate.postForEntity(PAYMAEN_URL + "create", payMent, CommonResult.class);
+                = restTemplate.postForEntity(PAYMAEN_URL + "/api/payment/create", payMent, CommonResult.class);
 
         return entity.getBody();
     }
@@ -36,7 +36,7 @@ public class PaymentController {
     public CommonResult queryPayment(@PathVariable Long id) {
 
         ResponseEntity<CommonResult> entity
-                = restTemplate.getForEntity(PAYMAEN_URL + "/queryPayment/" + id, CommonResult.class);
+                = restTemplate.getForEntity(PAYMAEN_URL + "/api/payment/queryPayment/" + id, CommonResult.class);
 
         return entity.getBody();
     }

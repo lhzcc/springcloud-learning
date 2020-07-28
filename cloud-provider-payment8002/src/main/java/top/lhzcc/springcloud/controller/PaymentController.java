@@ -2,15 +2,11 @@ package top.lhzcc.springcloud.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import top.lhzcc.springcloud.entities.CommonResult;
 import top.lhzcc.springcloud.entities.PayMent;
 import top.lhzcc.springcloud.service.PaymentService;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @Author: yaunlh
@@ -24,19 +20,8 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    /**
-     * 服务发现 获取服务信息
-     */
-    @Resource
-    private DiscoveryClient discoveryClient;
-
-    @GetMapping("discovery")
-    public CommonResult<DiscoveryClient> discovery() {
-
-//        List<String> services = discoveryClient.getServices();
-
-        return new CommonResult(HttpStatus.OK.value(), "成功", discoveryClient);
-    }
+    @Value("${server.port}")
+    private String serverPort;
 
     @PostMapping("create")
     public CommonResult<PayMent> create(@RequestBody PayMent payMent) {
@@ -44,7 +29,7 @@ public class PaymentController {
         Long aLong = paymentService.create(payMent);
 
         if (aLong > 0) {
-            return new CommonResult(HttpStatus.OK.value(),"添加成功 ");
+            return new CommonResult(HttpStatus.OK.value(),"添加成功, serverPort: " + serverPort,aLong);
         } else {
             return new CommonResult(HttpStatus.FAILED_DEPENDENCY.value(),"添加失败",null);
         }
