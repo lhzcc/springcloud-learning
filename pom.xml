@@ -15,6 +15,7 @@
         <module>cloud-provider-payment8001</module>
         <module>cloud-comsumer-order80</module>
         <module>cloud-api-commons</module>
+        <module>cloud-eureka-server7001</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
@@ -54,6 +55,11 @@
                 <version>Hoxton.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+                <version></version>
             </dependency>
             <!--spring cloud alibaba 2.1.0.RELEASE-->
             <dependency>
