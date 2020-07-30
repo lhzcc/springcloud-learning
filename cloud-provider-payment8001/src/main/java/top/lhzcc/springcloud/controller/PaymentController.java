@@ -49,7 +49,6 @@ public class PaymentController {
             return new CommonResult(HttpStatus.FAILED_DEPENDENCY.value(),"添加失败",null);
         }
 
-
     }
 
     @GetMapping("queryPayment/{id}")
