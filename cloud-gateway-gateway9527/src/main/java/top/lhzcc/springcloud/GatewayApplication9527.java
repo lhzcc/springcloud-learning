@@ -3,21 +3,18 @@ package top.lhzcc.springcloud;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @Author: yaunlh
- * @Date: 2020/7/30 14:28
+ * @Date: 2020/7/30 17:01
  * @Version 1.0
  */
 @SpringBootApplication
-@EnableHystrix
-@EnableFeignClients
-public class ConsumerFeignHystrixOrderApplication80 {
+@EnableEurekaClient
+public class GatewayApplication9527 {
 
     public static void main(String[] args) {
-        SpringApplication.run(ConsumerFeignHystrixOrderApplication80.class, args);
+        SpringApplication.run(GatewayApplication9527.class, args);
     }
-    
+
 }

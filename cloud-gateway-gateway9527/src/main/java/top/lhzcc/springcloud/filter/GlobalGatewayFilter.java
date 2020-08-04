@@ -9,37 +9,30 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.util.Date;
-
 /**
- * @auther zzyy
- * @create 2020-02-21 16:40
+ * @Author: yaunlh
+ * @Date: 2020/8/4 17:32
+ * @Version 1.0
  */
 @Component
 @Slf4j
-public class MyLogGateWayFilter implements GlobalFilter,Ordered
-{
+public class GlobalGatewayFilter implements Ordered, GlobalFilter {
 
     @Override
-    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain)
-    {
-        log.info("***********come in MyLogGateWayFilter:  "+new Date());
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-        String uname = exchange.getRequest().getQueryParams().getFirst("uname");
+        String username = exchange.getRequest().getQueryParams().getFirst("username");
 
-        if(uname == null)
-        {
-            log.info("*******用户名为null，非法用户，o(╥﹏╥)o");
+        if (username == null) {
+            log.error("***********************非法访问************！！！");
             exchange.getResponse().setStatusCode(HttpStatus.NOT_ACCEPTABLE);
             return exchange.getResponse().setComplete();
         }
-
         return chain.filter(exchange);
     }
 
     @Override
-    public int getOrder()
-    {
+    public int getOrder() {
         return 0;
     }
 }

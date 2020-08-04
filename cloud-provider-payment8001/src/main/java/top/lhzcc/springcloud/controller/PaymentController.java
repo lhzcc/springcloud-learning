@@ -10,7 +10,6 @@ import top.lhzcc.springcloud.entities.PayMent;
 import top.lhzcc.springcloud.service.PaymentService;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @Author: yaunlh
@@ -60,6 +59,15 @@ public class PaymentController {
         } else {
             return new CommonResult(HttpStatus.FAILED_DEPENDENCY.value(),"查询失败",null);
         }
+    }
+
+    @Value("${server.port}")
+    private String serverPort;
+
+    @GetMapping(value = "/lb")
+    public String getPaymentLB()
+    {
+        return serverPort;
     }
 
 }
