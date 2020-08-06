@@ -1,0 +1,13 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: alibaba-consumer-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://169.254.63.133:8848/
+
+service-url:
+  provider-payment-service: http://alibaba-provider-payment

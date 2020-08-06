@@ -41,4 +41,14 @@ public class PaymentController {
         return entity.getBody();
     }
 
+    @GetMapping(value = "/lb")
+    public String getPaymentLB()
+    {
+        ResponseEntity<String> entity
+                = restTemplate.getForEntity(PAYMAEN_URL + "/api/payment/lb", String.class);
+
+        return entity.getBody();
+    }
+
+
 }
